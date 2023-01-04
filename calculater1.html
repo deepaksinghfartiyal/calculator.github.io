@@ -1,0 +1,220 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        .big {
+            display: flex;
+            height: 100vh;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .main {
+            border: 3px solid black;
+            margin: auto;
+        }
+
+        .caldiv {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background-color: chartreuse;
+            font-size: 60px;
+            margin: auto;
+        }
+
+        .samediv {
+            margin-left: 30px;
+            font-size: larger;
+        }
+
+        .firstnum,
+        .secondnum,
+        .result {
+            width: 30%;
+            outline: none;
+            font-size: larger;
+        }
+
+        .firstnum {
+            margin-left: 29px;
+        }
+
+        .secondnum {
+            margin-left: 10px;
+        }
+
+        .result {
+            margin-left: 77px;
+        }
+
+        .maindiv {
+            display: flex;
+            margin-top: 50px;
+        }
+
+        .ondiv {
+            padding: 4px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 2px solid black;
+        }
+
+        input:focus {
+            background-color: lightpink;
+            box-shadow: 0 0 10px blue;
+            outline: none;
+            border: 1px solid red;
+        }
+
+        .ondiv:hover {
+            background-color: aqua;
+        }
+
+        .bdiv {
+            width: 100%;
+            background-color: cornflowerblue;
+            margin-top: 70px;
+            display: flex;
+            justify-content: space-evenly;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="big">
+
+        <div class="main">
+            <h1 class="caldiv">calculator</h1>
+
+            <div class="samediv">
+
+                <div class="maindiv">
+                    <label>First number:</label>
+                    <input class="firstnum" ; onkeyup="IsNumberValid()">
+                    <span id="check" style="color: red; display:none; ">please enter first number</span>
+                    <span id="valid" style="color: red; display: none;"">Please enter valid number</span>
+</div>
+
+<div class=" maindiv">
+                        <lable>second number:</lable>
+                        <input class="secondnum" onkeyup="IsNumberValid()">
+                        <span id="check1" style="color: red; display:none;">please enter second number</span>
+                        <span id="valid1" style="color: red; display: none;"> Please enter valid number </span>
+                </div>
+
+                <div class="maindiv">
+                    <label>Result:</label>
+                    <input class="result">
+                </div>
+            </div>
+
+            <div class="bdiv">
+                <button class="ondiv" onclick="add()">Addtion</button>
+                <button class="ondiv" onclick="sub()">Substraction</button>
+                <button class="ondiv" onclick="divi()">Division</button>
+                <button class="ondiv" onclick="multi()">Multiplication</button>
+                <button class="ondiv" onclick="erase()">Clear</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function add() {
+            let firstnumber = document.getElementsByClassName("firstnum")[0].value;
+            let secondnumber = document.getElementsByClassName("secondnum")[0].value;
+            checkvalue(firstnumber, secondnumber);
+            if (firstnumber != "" && secondnumber != "") {
+                if (!isNaN(firstnumber) && !isNaN(secondnumber)) {
+                    let number = parseInt(firstnumber) + parseInt(secondnumber);
+                    document.getElementsByClassName('result')[0].value = number;
+                }
+            }
+
+        }
+        function sub() {
+            let firstnumber = document.getElementsByClassName("firstnum")[0].value;
+            let secondnumber = document.getElementsByClassName("secondnum")[0].value;
+            checkvalue(firstnumber, secondnumber);
+            if (firstnumber != "" && secondnumber != "") {
+                if (!isNaN(firstnumber) && !isNaN(secondnumber)) {
+                    let number = parseInt(firstnumber) - parseInt(secondnumber);
+                    document.getElementsByClassName('result')[0].value = number;
+                }
+            }
+        }
+
+        function divi() {
+            let firstnumber = document.getElementsByClassName("firstnum")[0].value;
+            let secondnumber = document.getElementsByClassName("secondnum")[0].value;
+            checkvalue(firstnumber, secondnumber);
+            if (firstnumber != "" && secondnumber != "") {
+                if (!isNaN(firstnumber) && !isNaN(secondnumber)) {
+                    let number = parseInt(firstnumber) / parseInt(secondnumber);
+                    document.getElementsByClassName("result")[0].value = number;
+                }
+            }
+        }
+        function multi() {
+            let firstnumber = document.getElementsByClassName("firstnum")[0].value;
+            let secondnumber = document.getElementsByClassName("secondnum")[0].value;
+            checkvalue(firstnumber, secondnumber);
+            if (firstnumber != "" && secondnumber != "") {
+                if (!isNaN(firstnumber) && !isNaN(secondnumber)) {
+                    let number = parseInt(firstnumber) * parseInt(secondnumber);
+                    document.getElementsByClassName("result")[0].value = number;
+                }
+            }
+        }
+        function erase() {
+            document.getElementsByClassName("firstnum")[0].value = "";
+            document.getElementById("valid").style.display = "none";
+            document.getElementById("check").style.display = "none";
+            document.getElementsByClassName("secondnum")[0].value = "";
+            document.getElementById("valid1").style.display = "none";
+            document.getElementById("check1").style.display = "none";
+            document.getElementsByClassName("result")[0].value = "";
+        }
+        function checkvalue(firstnumber, secondnumber) {
+            if (firstnumber == "") {
+                document.getElementById("check").style.display = "block";
+            }
+            if (secondnumber == "") {
+                document.getElementById("check1").style.display = "block";
+            }
+        }
+        function IsNumberValid() {
+            let firstnumber = document.getElementsByClassName("firstnum")[0].value;
+            let secondnumber = document.getElementsByClassName("secondnum")[0].value;
+            if (isNaN(firstnumber)) {
+                document.getElementById("valid").style.display = "block";
+                document.getElementsByClassName("result")[0].value = "";
+            }
+            else {
+                document.getElementById("valid").style.display = "none";
+            }
+            if (isNaN(secondnumber)) {
+                document.getElementById("valid1").style.display = "block";
+                document.getElementsByClassName("result")[0].value = "";
+            }
+            else {
+                document.getElementById("valid1").style.display = "none";
+            }
+            if (firstnumber != "") {
+                document.getElementById("check").style.display = "none";
+            }
+            if (secondnumber != "") {
+                document.getElementById("check1").style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>
